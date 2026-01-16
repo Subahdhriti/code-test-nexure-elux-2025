@@ -3,21 +3,21 @@ package io.nexure.discount
 import io.ktor.server.application.Application
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
-import io.ktor.server.routing.routing
-
-const val DISCOUNT_ENDPOINT = "/discount"
+import io.nexure.discount.database.DatabaseFactory
+import io.nexure.discount.plugins.configureRouting
+import io.nexure.discount.plugins.configureSerialization
 
 fun main() {
     embeddedServer(
         factory = Netty,
         port = 8082,
         host = "0.0.0.0",
-        module = Application::routing,
+        module = Application::module,
     ).start(true)
 }
 
-fun Application.routing() {
-    routing {
-        // define your routes here
-    }
+fun Application.module() {
+    DatabaseFactory.init()
+    configureSerialization()
+    configureRouting()
 }
