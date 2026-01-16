@@ -35,11 +35,6 @@ data class ApplyDiscountRequest(
 )
 
 @Serializable
-data class ErrorResponse(
-    val error: String
-)
-
-@Serializable
 data class CountryVat(
     val country: String,
     val vat: Double
