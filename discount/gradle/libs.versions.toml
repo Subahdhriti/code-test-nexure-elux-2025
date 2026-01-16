@@ -1,0 +1,49 @@
+[versions]
+jvm = "2.2.20"
+ktor = "3.1.2"
+reactor_core = "3.7.6"
+coroutines_reactor = "1.10.2"
+testcontainers = "1.20.6"
+mockk = "1.13.17"
+[libraries]
+ktor_server_core_jvm = { group = "io.ktor", name = "ktor-server-core-jvm", version.ref = "ktor" }
+ktor_server_netty_jvm = { group = "io.ktor", name = "ktor-server-netty-jvm", version.ref = "ktor" }
+ktor_server_host_common_jvm = { group = "io.ktor", name = "ktor-server-host-common-jvm", version.ref = "ktor" }
+ktor_server_test_host = { group = "io.ktor", name = "ktor-server-test-host-jvm", version.ref = "ktor" }
+ktor_serialization_kotlinx_json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor_client_okhttp = { group = "io.ktor", name = "ktor-client-okhttp-jvm", version.ref = "ktor" }
+ktor_client_core = { group = "io.ktor", name = "ktor-client-core-jvm", version.ref = "ktor" }
+ktor_client_content_negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
+reactor_core = { group = "io.projectreactor", name = "reactor-core", version.ref = "reactor_core" }
+kotlinx_coroutines_reactor = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-reactor", version.ref = "coroutines_reactor" }
+kotlinx_coroutines_test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test-jvm", version.ref = "coroutines_reactor" }
+reactor_test = { group = "io.projectreactor", name = "reactor-test", version.ref = "reactor_core" }
+testcontainer_kafka = { group = "org.testcontainers", name = "kafka", version.ref = "testcontainers" }
+testcontainer_mongo = { group = "org.testcontainers", name = "mongodb", version.ref = "testcontainers" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+[bundles]
+common = [
+    "reactor_core",
+    "kotlinx_coroutines_reactor",
+]
+ktor-server = [
+    "ktor_server_core_jvm",
+    "ktor_server_netty_jvm",
+    "ktor_server_host_common_jvm",
+    "ktor_serialization_kotlinx_json",
+]
+ktor-client = [
+    "ktor_client_core",
+    "ktor_client_okhttp",
+    "ktor_client_content_negotiation",
+]
+ktor-test = [
+    "reactor_test",
+    "kotlinx_coroutines_test",
+    "ktor_server_test_host",
+    "testcontainer_kafka",
+    "testcontainer_mongo",
+    "mockk"
+]
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jvm" }
